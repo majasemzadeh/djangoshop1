@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row" style="margin-top: 100px">
+      <div class="col-lg-6" >
+          <div class="box-element" id="form-wrapper">
+            <form id="form">
+                <div id="user-info">
+                    <div class="form-field">
+                        <input required name="name" type="text" class="form-control" placeholder="نام...">
+                    </div>
+                   <div class="form-field">
+                    <input required name="email" type="text" class="form-control" placeholder="ایمیل ...">
+                   </div>
+
+                </div>
+                <div id="shipping-info">
+                    <hr>
+                    <p>اطلاعات خرید:</p>
+                    <hr>
+                    <div class="form-field-col d-flex flex-column">
+                    <input type="checkbox" value="sdsdfsfdds">
+                    <input type="checkbox" value="sdsdfsfdds">
+                    <input type="checkbox" value="sdsdfsfdds">
+                    <input type="checkbox" value="sdsdfsfdds">
+                    <input type="checkbox" value="sdsdfsfdds">
+{#                        <button class="add-address">add new address</button>#}
+
+                    </div>
+                    <div class="form-field">
+                        <input required name="address" type="text" class="form-control" placeholder="ادرس...">
+                    </div>
+                    <div class="form-field">
+                        <input required name="city" type="text" class="form-control" placeholder="شهر...">
+                    </div>
+                    <div class="form-field">
+                        <input required name="state" type="text" class="form-control" placeholder="استان...">
+                    </div>
+{#                    <div class="form-field">#}
+{#                        <input required name="zipcode" type="text" class="form-control" placeholder="Zip Code...">#}
+{#                    </div>#}
+                    <button class="add-address">add new address</button>
+                </div>
+                <hr>
+                <div class="box-element hidden">
+                    <small>Paypal Options</small>
+
+                </div>
+                <br>
+                <input id="form-button" type="submit" class="btn btn-success btn-block" value="Continue">
+            </form>
+          </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box-element">
+            <a href="" class="btn btn-outline-dark">
+               &#x2190; بازگشت به سبد خرید
+            </a>
+            <hr>
+            <h3>خلاصه سفارش</h3>
+            <hr>
+
+            {% for cart_item in cartitems %}
+            <div class="cart-row">
+
+                <div style="flex:2">
+                    <img src="{{cart_item.product.image.url }}" alt="product" class="row-image">
+                </div>
+                <div style="flex:2">
+                    <p>{{ cart_item.product.name }}</p>
+                </div>
+                <div style="flex:1">
+                    <p>{{ cart_item.price }}</p>
+                </div>
+                <div style="flex:1">
+                    <p>{{ cart_item.count }}</p>
+                </div>
+
+            </div>
+            {% endfor %}
+
+            <h5>ایتم ها:</h5>
+            <h5>قیمت نهایی:{{ cart.total_price }}</h5>
+        </div>
+    </div>
+  </div>
+
+{% endblock %}
+{% block jscript %}
+<script>
+{#$(document).ready(function(){#}
+{#    $(".form-field").hide()#}
+{#      $(".add-address").click(function(){#}
+{#        $(".form-field").show();#}
+{#         $(".add-address").hide()#}
+{# });#}
+{# });#}
+
+</script>
+{% endblock %}

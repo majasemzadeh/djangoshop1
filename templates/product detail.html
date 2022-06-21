@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for p in product_list %}
+    {{ p.name }}
+               <form action="{% url 'products:list_product' %}">
+                            <label for="id_pcategory" id="label_category" style="color: white"> فیلتر دسته بندی</label>
+                            {{ categorys.form }}
+                        <input type="submit">
+               </form>
+{% endfor %}
+</body>
+</html>

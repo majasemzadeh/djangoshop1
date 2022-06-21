@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block login %}
+    {% if user.username %}
+{#        {% user.customer = cusrtomer %}#}
+        <a href="{% url 'logout' %}" class="btn btn-primary">خروج</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary">ورود</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    {% for product in product_list %}
+        <p>{{ product.name }}</p>
+    {% endfor %}
+
+    <div class="biz-product-wrap">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <div class="text-center section-heading" style="color: white">
+                                    <h1 style="color: white">fdsafsfafs</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="owl-carousel owl-theme biz-products carousel-indicator owl-rtl owl-loaded owl-drag">
+
+
+                                    {% for product in product_list %}
+                                        <div class="owl-item cloned" style="width: 255px; margin-left: 30px;"><div class="biz-single-product item">
+                                        <div class="biz-product-img">
+                                            <img src="{{ product.image.url }}" alt="Smart Product" class="img-responsive">
+                                        </div>
+                                        <div class="biz-product-content">
+                                            <p>{{ product.name }}</p>
+                                            {% if discount %}
+                                                {% for dis in discount %}
+                                                    {% if dis.dproduct == product %}
+                                                    <div class="price">
+                                                        <h5><span class="original-price">{{ product.price }} هزار تومان</span> <del>400 هزار تومان</del></h5>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="price">
+                                                <h5><span class="original-price">{{ product.price }} هزار تومان</span></h5>
+                                            </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                                {% else %}
+                                                           <div class="price">
+                                                <h5><span class="original-price">{{ product.price }} هزار تومان</span></h5>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action-btn text-center mt-20">
+                                                <a href="{% url 'products:product' slug=product.slug %}" class="btn softo-btn-outline popup-details">مشاهده جزئیات</a>
+                                            </div>
+                                        </div>
+                                    </div></div>
+                                    {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+{% endblock %}
+{% block jscript %}
+<script>
+    $(document).ready(function(){
+    $("label").hide();
+    $("#label_category").show();
+
+
+});
+</script>
+{% endblock %}

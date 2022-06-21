@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script>
+
+   {#   $(document).ready(function(){#}
+   {#   $(".btn-single").click(function(){#}
+   {#      $(".btn-single").hide();#}
+   {#      $(".btn-single1").show();#}
+   {#       let req = new XMLHttpRequest()#}
+   {#       req.open("POST", "http://127.0.0.1:8000/add-cartitem/", true)#}
+          {#req.setRequestHeader("Content-Type", "application/json");#}
+   {#       req.setRequestHeader("Content-Type", "application/json");#}
+   {#       req.onreadystatechange = function (){#}
+   {#           console.log(this.readyState)#}
+   {#           console.log(this.status)#}
+   {#           console.log(this.response)#}
+   {#           console.log(obj.count, obj.product)#}
+   {#       }#}
+   {##}
+   {#     let text = '{"product":1, "count": 1, "cart": 1}';#}
+   {#       const obj = JSON.parse(text);#}
+   {#       req.send(obj);#}
+   {#   });#}
+   {#  });#}
+   $(document).ready(function(){
+             $(".btn-single").click(function(){
+         $(".btn-single").text('اضافه شد')
+       var json = JSON.stringify({"product":{{ product.id }}, "count": 1, 'price':{{product.price}}})
+      $.ajax({
+type: "POST",
+url: "{% url 'add_cartitem' %}",
+data: json,
+   headers: {
+           'X-CSRFToken': "{{ csrf_token }}"
+         },
+contentType: "application/json",
+success: function (msg) {
+    console.log(msg)
+    console.log(json)
+    console.log(this.response)
+alert("successful ! ...  "+this.response)
+location.reload()
+},
+error: function (msg) {
+console.log(msg)
+}
+});
+      });
+
+ });
+
+
+</script>
+</head>
+<body>
+<div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="single-box">
+                  <div class="row">
+                     <div class="col-md-7">
+                        <h5>{{ product.name }}</h5>
+                        <h6>{{ product.id }}</h6>
+                        <hr>
+                        <div class="row">
+                           <div class="col-md-7">
+                              <div class="single-content-right">
+                                 <ul class="brand-ul">
+                                    <li>برند : <a href="#">هوآوی</a></li>
+                                    <li>دسته بندی : <a href="#">موبایل و تبلت</a></li>
+                                 </ul>
+                                 <br>
+                                 <span>مشخصات مختصر محصول :</span><br>
+                                 <ul class="product-ul">
+                                    <li></li>
+                                    <li>اندازه نمایشگر 10 اینچ</li>
+                                    <li>دارای شبکه 4G</li>
+                                    <li>دارای دو سیم کارت</li>
+                                    <li>حافظه داخلی 32G</li>
+                                    <li>دارای بدنه فلزی در عین حال سبک</li>
+                                    <li>درای تنوع رنگ</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-md-5">
+                              <div class="single-content-left">
+                                 <ul>
+                                    <span>وضعیت : موجود در انبار</span><br><br>
+                                    <li>گارانتی : Huawei</li>
+                                    <br>
+                                    <li>
+                                       رنگ بندی :
+                                       <ul>
+                                          <li><i class="fa fa-square white"></i>سفید</li>
+                                          <li><i class="fa fa-square black"></i>مشکی</li>
+                                          <li><i class="fa fa-square silver"></i>نقره ای</li>
+                                          <li><i class="fa fa-square gold"></i>طلایی</li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                        <hr>
+                        <h3> {{ product.price }} تومان</h3>
+                        <h3 id="added">به سبد خرید افزوده شد</h3>
+                             <div  class="btn-single1">
+                           <a href="#"><i class="fa fa-cart-plus" id="jjj"></i>jjdjf</a>
+                        </div>
+                        <div  class="btn-single">
+                           <a href="#"><i class="fa fa-cart-plus" class="btn1" data-product-slug="{{ product.slug }}", user="{{ user.username }}"></i>خرید آنلاین</a>
+                        </div>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="single-img">
+                           <figure>
+                              <img src="{{ product.image.url }}" class="w-100 s-img" data-zoom-image="img/single-tablet.jpg">
+                           </figure>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+</body>
+</html>

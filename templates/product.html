@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block login %}
+    {% if user.username %}
+        <a onclick="" class="btn btn-primary" data-product-slug="{{ product.slug }}", user="{{ user.username }}">خروج</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary">ورود</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+
+{#    <img src="{{ product.image.url }}">#}
+    <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="single-box">
+                  <div class="row">
+                     <div class="col-md-7">
+                        <h5>
+                        </h5>
+                        <h6>{{ product.name }}</h6>
+                        <hr>
+                        <div class="row">
+                           <div class="col-md-7">
+                              <div class="single-content-right">
+                                 <ul class="brand-ul">
+                                    <li>برند : <a href="#">{{ product.brand }}</a></li>
+                                    <li>دسته بندی : <a href="{% url 'categoryproducts' product.pcategory.category_slug  %}">{{ product.pcategory}}</a></li>
+                                 </ul>
+                                 <br>
+                                 <span>مشخصات مختصر محصول :</span><br>
+                                 <ul class="product-ul">
+                                  {{ product.description }}
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-md-5">
+                              <div class="single-content-left">
+                                 {{ product.description }}
+                              </div>
+                           </div>
+                        </div>
+                        <hr>
+                        <h3>85000 تومان</h3>
+                        <div  class="btn-single">
+                           <button onclick="" data-product-slug="{{ product.slug }}", user="{{ user.username }}">خرید آنلاین</button>
+                        </div>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="single-img">
+                           <figure>
+                              <img src="{{ product.image.url }}" class="w-100 s-img" data-zoom-image="img/single-tablet.jpg">
+                           </figure>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+{% endblock %}
+
+{% block jscript %}
+    <script>
+    {#$(".btn-sin").click(function(){#}
+    {#    $(this).hide();#}
+    {# });#}
+    {#var clicked;#}
+    {#$(".btn").click(function () {#}
+    {#    $(".btn-single").hide()#}
+        {#let ordersValue = "remove"#}
+        {#var json = JSON.stringify(ordersValue);#}
+    {#    var data_product_slug = $(this).attr("data-product-slug")#}
+    {#    var data_user_username = $(this).attr("user")#}
+    {#    $.ajax({#}
+    {#        type : "POST",#}
+    {#        url: "{% url 'add_cartitem' %}",#}
+    {#        data : {"data_product_slug":data_product_slug, 'data_user_username':data_user_username },#}
+    {#            dataType: "json",#}
+    {#        success: function (msg) {#}
+    {#            alert('اضافه شد');#}
+    {#        }#}
+    {#    });#}
+    {# });#}
+
+  {#  $(".btn").click(function(){#}
+  {#      $.post("{% url 'add_cartitem' %}",#}
+  {#  {#}
+        {#data_product_slug:data_product_slug,#}
+        {#data_user_username:data_user_username,#}
+  {#    name: "Donald Duck",#}
+  {#    city: "Duckburg"#}
+  {#  },#}
+  {#  function(data,status){#}
+  {#    alert("Data: " + data + "\nStatus: " + status);#}
+  {#  });#}
+  {# });#}
+
+      $("button").click(function(){
+          $("button").hide()
+          var data_product_slug = $(this).attr("data-product-slug");
+          var data_user_username = $(this).attr("user")
+          $.ajax({
+            type : "POST",
+            url: "{% url 'add_cartitem' %}",
+            data : {"data_product_slug":data_product_slug, 'data_user_username':data_user_username },
+                dataType: "json",
+            success: function (msg) {
+                alert('اضافه شد');
+            }
+            });
+          alert(data_user_username);
+
+   });
+
+    </script>
+{% endblock %}

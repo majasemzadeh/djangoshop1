@@ -1,0 +1,59 @@
+
+{% extends 'base.html' %}
+{% block login %}
+    {% if user.username %}
+        <a href="{% url 'logout' %}" class="btn btn-primary">خروج</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary">ورود</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+           <section id="hero" class="section-hero section-rotate">
+                <div class="section-inner">
+                </div>
+                <!--background circle shape-->
+                <div class="container">
+                    <div class="row">
+                        <div class="form-body without-side" style="background-color: #f17079">
+        <div class="website-logo">
+        </div>
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                      <h3>ورود به حساب</h3>
+                        {% if resp %}
+                            <p style="color: red">{{ resp }}</p>
+                        {% else %}
+                            <p>با ورود به حساب خود به مدیریت حساب خود برسید</p>
+                        {% endif %}
+{#                        <p>با ورود به حساب خود به مدیریت حساب خود برسید</p>#}
+                        <form action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+                            <input class="form-control" type="text" name="username" placeholder="شماره تلفن" required>
+                            <input class="form-control" type="password" name="password" placeholder="رمز عبور" required>
+                            <div class="form-button">
+                                <input id="submit" type="submit" value="ورود" class="ibtn">
+                            </div>
+                        </form>
+                        <div class="page-links">
+                            <a href="{% url 'sing_up' %}">ثبت نام</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                        <div class="col-md-6">
+                            <div class="hero-content-wrap-1">
+                                <div class="hero-content">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+{% endblock %}>

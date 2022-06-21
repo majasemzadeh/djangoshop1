@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block login %}
+    {% if user.username %}
+        <a href="{% url 'logout' %}" class="btn btn-primary" id="logout">خروج</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary" id="login">ورود</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+            <!--new feature start-->
+            <section id="features" class="new-features ptb-90">
+                <div class="new-features-one">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="feature-heading">
+                                    <h3>همه شما نیاز دارید</h3>
+                                </div>
+                                <!--feature single start-->
+                                <div class="single-feature mtb-5">
+                                    <div class="feature-icon">
+                                        <div class="icon icon-shape">
+                                            <i class="flaticon-cardiogram"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>ضربان قلب</h5>
+                                        <p class="mb-0">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                                    </div>
+                                </div>
+                                <!--feature single end-->
+                                <!--feature single start-->
+                                <div class="single-feature mtb-5">
+                                    <div class="feature-icon">
+                                        <div class="icon icon-shape">
+                                            <i class="flaticon-step"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>گام  شمار</h5>
+                                        <p class="mb-0">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                                    </div>
+                                </div>
+                                <!--feature single end-->
+
+                                <!--feature single start-->
+                                <div class="single-feature mtb-5">
+                                    <div class="feature-icon">
+                                        <div class="icon icon-shape">
+                                            <i class="flaticon-volume"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>هشدار دهنده</h5>
+                                        <p class="mb-0">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                                    </div>
+                                </div>
+                                <!--feature single end-->
+
+                                <!--feature single start-->
+                                <div class="single-feature mtb-5">
+                                    <div class="feature-icon">
+                                        <div class="icon icon-shape">
+                                            <i class="flaticon-distance"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>شمارنده فاصله</h5>
+                                        <p class="mb-0">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                                    </div>
+                                </div>
+                                <!--feature single end-->
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-image">
+                                    <img src="/static/img/feature-image.png" alt="feature" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="new-features-two">
+                    <div class="container">
+                        <div class="row mt-100">
+                            <div class="col-md-6">
+                                <div class="feature-image">
+                                    <img src="img/feature-img-with-app.png" alt="feature" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-heading">
+                                    <h3>خودتان را بشناسید، سلامت خود را بدانید</h3>
+                                </div>
+                                <!--feature single start-->
+                                <div class="single-feature mtb-5">
+                                    <div class="feature-icon">
+                                        <div class="icon icon-shape">
+                                            <i class="flaticon-slumber"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>در خواب</h5>
+                                        <p class="mb-0">
+                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--feature single end-->
+                                <!--feature single start-->
+                                <div class="single-feature mtb-5">
+                                    <div class="feature-icon">
+                                        <div class="icon icon-shape">
+                                            <i class="flaticon-bluetooth"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>بلوتوث </h5>
+                                        <p class="mb-0">
+                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--feature single end-->
+
+                                <!--feature single start-->
+                                <div class="single-feature mtb-5">
+                                    <div class="feature-icon">
+                                        <div class="icon icon-shape">
+                                            <i class="flaticon-sun-1"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>آب و هوا</h5>
+                                        <p class="mb-0">
+                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--feature single end-->
+
+                                <!--feature single start-->
+                                <div class="single-feature mtb-5">
+                                    <div class="feature-icon">
+                                        <div class="icon icon-shape">
+                                            <i class="flaticon-sphygmomanometer"></i>
+                                        </div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>مدیریت فشار خون</h5>
+                                        <p class="mb-0">
+                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--feature single end-->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--new feature end-->
+{% endblock %}

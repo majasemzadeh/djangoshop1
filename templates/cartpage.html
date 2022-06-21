@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% block login %}
+    {% if user.username %}
+{#        {% user.customer = cusrtomer %}#}
+        <a href="{% url 'logout' %}" class="btn btn-primary">خروج</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary">ورود</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+{% if cart %}
+        <div class="content" style="margin-top: 100px">
+		<h1>سبد خرید</h1>
+        <a class="btn btn-danger" id="remove_all" href="">خالی کردن سبدخرید</a>
+		<p>تعداد محصولات را اضافه و کم کنید و سبد خود را آپدیت کنید.</p>
+		<!-- start undo button -->
+		<p class="removeAlert">
+			آیتم مورد نظر حذف شد. اشتباه کردید؟ <a href="#">برگرداندن آیتم</a>
+		</p>
+		<!-- end undo button -->
+
+
+		<table class="items">
+			<thead>
+			<!-- start table head -->
+			<tr>
+				<th>نام محصول</th>
+				<th>قیمت</th>
+				<th>تعداد</th>
+				<th>مجموع</th>
+			</tr>
+			<!-- end table head -->
+			</thead>
+			<tbody>
+            {% for cart_item in cartitems %}
+                {% if cart_item.cart == cart %}
+                    			<!-- start table body -->
+			<tr>
+				<!-- start item one -->
+				<td>
+					<div class="item">
+						<div class="item-front">
+							<img src="{{ cart_item.product.image.url }}" />
+						</div>
+						<div class="item-back">
+							<img src="{{ cart_item.product.image.url }}" />
+						</div>
+					</div>
+					<p>{{ cart_item.product.name }}<br /><span class="itemNum">A5 2017</span></p>
+					<p class="description">خلاصه توضیح در مورد محصول مورد نظر</p>
+				</td>
+				<td>{{ cart_item.product.price }}</td>
+				<td>
+                    <a class="btn btn-danger minus" id="kam">-</a>
+                    <a  id="count-{{ cart_item.id }}" dproduct="{{ cart_item.id }}" price="{{ cart_item.price }}" class="btn btn-info" >{{ cart_item.count }}</a>
+                    <a class="btn btn-success plus" id="ezafeh">+</a>
+					<a href="#" class="remove" cartitemid="{{ cart_item.id }}">حذف</a>
+				</td>
+				<td class="itemTotal">{{ cart_item.total_price }}</td>
+				<!-- end item one -->
+			</tr>
+                {% endif %}
+            {% endfor %}
+			</tbody>
+		</table>
+
+		<!-- start checkout list -->
+		<div class="cost">
+			<h2>پیش فاکتور</h2>
+
+			<table class="pricing">
+				<tbody>
+				<tr>
+					<td>قیمت کل</td>
+					<td class="subtotal"><del>{{ cart.total_price }}</del></td>
+				</tr>
+				<tr>
+					<td>تخفیف</td>
+					<td class="tax"></td>
+				</tr>
+				<tr>
+					<td><strong>مجموع:</strong></td>
+					<td class="orderTotal">{{ cart.total_price }}</td>
+				</tr>
+				</tbody>
+			</table>
+                <a type="submit" class="col-10 btn btn-info" id="buy" href="{% url 'checkout' %}">خرید</a>
+
+		</div><!-- end checkout list -->
+	</div> <!-- End Content -->
+{% else %}
+    <div class="content d-flex justify-content-center" style="margin-top: 100px">
+<h1>سبد خرید خالی ست</h1>
+    </div>
+{% endif %}
+
+{% endblock %}
+{% block jscript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $('#remove_all').click(function () {
+       $(this).hide()
+           var json = JSON.stringify({'cart':{{cart.id}}})
+        console.log(json)
+      $.ajax({
+    type: "POST",
+    url: "{% url 'empty_cart' %}",
+    data: json,
+    headers: {
+           'X-CSRFToken': "{{ csrf_token }}"
+         },
+contentType: "application/json",
+success: function (msg) {
+    console.log(msg)
+    console.log(json)
+    console.log(this.response)
+console.log('success')
+location.reload()
+},
+error: function (msg) {
+alert("error");
+console.log(msg)
+}
+});
+    });
+
+
+$(".minus").click(function(){
+    var x=Number($(this).parent("td").children(".btn-info").text())-1
+    $(this).parent("td").children(".btn-info").text(x)
+    var y = $(this).parent("td").children(".btn-info").attr("dproduct")
+    var z = Number($(this).parent("td").children(".btn-info").attr("price"))
+           var json = JSON.stringify({"product":Number(y), "count": x, 'price': z, 'cart':{{cart.id}}})
+      $.ajax({
+    type: "POST",
+    url: "{% url 'add_cartitem' %}",
+    data: json,
+    headers: {
+           'X-CSRFToken': "{{ csrf_token }}"
+         },
+contentType: "application/json",
+success: function (msg) {
+    console.log(msg)
+    console.log(json)
+    console.log(this.response)
+console.log('success')
+location.reload()
+},
+error: function (msg) {
+alert("error");
+}
+});
+
+
+});
+$(".plus").click(function(){
+    var x=Number($(this).parent("td").children(".btn-info").text())+1
+    var y = $(this).parent("td").children(".btn-info").attr("dproduct")
+    var z = Number($(this).parent("td").children(".btn-info").attr("price"))
+           var json = JSON.stringify({"product":Number(y), "count": x, 'price': z, 'cart':{{cart.id}}})
+      $.ajax({
+    type: "POST",
+    url: "{% url 'add_cartitem' %}",
+    data: json,
+    headers: {
+           'X-CSRFToken': "{{ csrf_token }}"
+         },
+contentType: "application/json",
+success: function (msg) {
+    console.log(msg)
+    console.log(json)
+    console.log(this.response)
+    console.log('success')
+location.reload()
+},
+error: function (msg) {
+alert("error");
+}
+});
+    $(this).parent("td").children(".btn-info").text(x)
+    console.log(y)
+});
+
+
+$('.remove').click(function () {
+    var cart_item=$(this).attr('cartitemid')
+    console.log(cart_item)
+               var json = JSON.stringify({'id':cart_item})
+      $.ajax({
+    type: "POST",
+    url: "{% url 'remove_cartitem' %}",
+    data: json,
+    headers: {
+           'X-CSRFToken': "{{ csrf_token }}"
+         },
+contentType: "application/json",
+success: function (msg) {
+    console.log(msg)
+    console.log(json)
+    console.log(this.response)
+    console.log('success')
+location.reload()
+},
+error: function (msg) {
+alert("error");
+}
+});
+    $(this).parent('td').hide()
+});
+    </script>
+{% endblock %}
