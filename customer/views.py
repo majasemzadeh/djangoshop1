@@ -21,6 +21,7 @@ class SingUp(View):
         username = request.POST['username']
         first_name = request.POST['name']
         password = request.POST['password']
+        print(username)
 
         if validat_phone(username) == True:
             new_user = Myuser.objects.create_user(username=username, first_name=first_name, password=password,

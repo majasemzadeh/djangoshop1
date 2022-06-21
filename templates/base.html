@@ -1,30 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link rel="stylesheet" href="../static/css/themify-icons.css">
-    <link rel="stylesheet" href="../static/fonts/flaticon.css">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/flaticon.css' %}">
 
-        <link rel="stylesheet" href="../static/css/magnific-popup.css">
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
 
     <!--owl carousel -->
-    <link href="../static/css/owl.theme.default.min.css" rel="stylesheet">
-    <link href="../static/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="/{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
 
     <!-- bootstrap core css -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- custom css -->
-    <link href="../static/css/style.css" rel="stylesheet">
-    <link href="../static/style1.css" rel="stylesheet">
-    <link href="../static/iofrm-style-1.css" rel="stylesheet">
-    <link type="text/css" href="../static/css/css/style.css" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'style1.css' %}" rel="stylesheet">
+    <link href="{% static 'iofrm-style-1.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/css/style.css' %}" rel="stylesheet" />
 
 
     <!-- responsive css -->
-    <link href="../static/css/responsive.css" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
     <script>
 $(document).ready(function(){
   $("h3").click(function(event){
